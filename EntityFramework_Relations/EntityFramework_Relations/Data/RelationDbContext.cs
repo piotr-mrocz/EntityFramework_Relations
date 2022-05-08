@@ -35,6 +35,11 @@ public class RelationDbContext : DbContext
             .WithMany(u => u.WorkItems) // one Author (User) has many WorkItems
             .HasForeignKey(w => w.AuthorId);
 
+        // we don't have to write this relation in second way (Tag <=> WorkItem). This is enough
+        builder.Entity<WorkItem>()
+            .HasMany(w => w.Tags) // many WorkItems have many Tags
+            .WithMany(t => t.WorkItems); // many Tags have many WorkItems
+
         base.OnModelCreating(builder);
     }
 }
