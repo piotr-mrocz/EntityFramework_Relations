@@ -16,4 +16,7 @@ public class WorkItem
 
     // relations 1 to many
     public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
+    public User Author { get; set; } = null!;
+    public Guid AuthorId { get; set; }
 }

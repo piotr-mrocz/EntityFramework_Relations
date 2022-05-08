@@ -9,4 +9,6 @@ public class User
 
     // relations 1 to 1
     public Address Address { get; set; } = null!;
+
+    public List<WorkItem> WorkItems { get; set; } = new List<WorkItem>();
 }

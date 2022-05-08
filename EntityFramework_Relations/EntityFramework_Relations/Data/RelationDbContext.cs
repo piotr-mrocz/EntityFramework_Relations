@@ -23,11 +23,17 @@ public class RelationDbContext : DbContext
             .WithOne(a => a.User) // because Address is in relation with User (1 to 1)
             .HasForeignKey<Address>(a => a.UserId); // foreign key is in Address class and it's name is UserId
 
-        // we don't have to write this relation in second way (Coment => WorkItem). This is enough
+        // we don't have to write this relation in second way (Coment <=> WorkItem). This is enough
         builder.Entity<WorkItem>()
             .HasMany(w => w.Comments) // one WorkItem has many comments
             .WithOne(c => c.WorkItem) // one Comment has only one WorkItem
             .HasForeignKey(x => x.WorkItemId);
+
+        // we don't have to write this relation in second way (User <=> WorkItem). This is enough
+        builder.Entity<WorkItem>()
+            .HasOne(w => w.Author) // one WorkItem has only one Author (User)
+            .WithMany(u => u.WorkItems) // one Author (User) has many WorkItems
+            .HasForeignKey(w => w.AuthorId);
 
         base.OnModelCreating(builder);
     }
