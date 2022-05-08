@@ -14,7 +14,7 @@ public class WorkItem
     public decimal RemaningWork { get; set; }
     public string Type { get; set; } = null!;
 
-    // relations 1 to many
+    // relations 1 to many - we have to create foreign key (e.g. AuthorId), where is 1
     public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     public User Author { get; set; } = null!;
